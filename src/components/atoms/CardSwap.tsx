@@ -5,7 +5,6 @@ import gsap from "gsap";
 import React, {
 	Children,
 	cloneElement,
-	forwardRef,
 	isValidElement,
 	type ReactElement,
 	type ReactNode,
@@ -13,7 +12,9 @@ import React, {
 	useEffect,
 	useMemo,
 	useRef,
+	useState,
 } from "react";
+import { createPortal } from "react-dom";
 
 export interface CardSwapProps {
 	width?: number | string;
@@ -110,6 +111,8 @@ export const CardSwap: React.FC<CardSwapProps> = ({
 	const intervalRef = useRef<number>(0);
 	const container = useRef<HTMLDivElement>(null);
 
+	const [expandedIndex, setExpandedIndex] = useState<number | null>(null);
+
 	useEffect(() => {
 		const total = refs.length;
 		refs.forEach((r, i) =>
@@ -183,19 +186,29 @@ export const CardSwap: React.FC<CardSwapProps> = ({
 			});
 		};
 
-		swap();
-		intervalRef.current = window.setInterval(swap, delay);
+        // Don't auto-swap if expanded
+        if (expandedIndex === null) {
+		    swap();
+		    intervalRef.current = window.setInterval(swap, delay);
+        }
 
-		if (pauseOnHover) {
+		if (pauseOnHover || expandedIndex !== null) {
 			const node = container.current!;
 			const pause = () => {
 				tlRef.current?.pause();
 				clearInterval(intervalRef.current);
 			};
 			const resume = () => {
+                if (expandedIndex !== null) return; // Keep paused if expanded
 				tlRef.current?.play();
 				intervalRef.current = window.setInterval(swap, delay);
 			};
+            
+            // If expanded, pause immediately
+            if (expandedIndex !== null) {
+                pause();
+            }
+
 			node.addEventListener("mouseenter", pause);
 			node.addEventListener("mouseleave", resume);
 			return () => {
@@ -205,29 +218,54 @@ export const CardSwap: React.FC<CardSwapProps> = ({
 			};
 		}
 		return () => clearInterval(intervalRef.current);
-	}, [cardDistance, verticalDistance, delay, pauseOnHover, skewAmount, easing]);
+	}, [cardDistance, verticalDistance, delay, pauseOnHover, skewAmount, easing, expandedIndex]);
 
 	const rendered = childArr.map((child, i) =>
 		isValidElement<CardProps>(child)
 			? cloneElement(child, {
 					key: i,
 					ref: refs[i],
-					style: { width, height, ...(child.props.style ?? {}) },
-					onClick: (e) => {
-						child.props.onClick?.(e as React.MouseEvent<HTMLDivElement>);
+					style: {
+                        width,
+                        height,
+                        ...(child.props.style ?? {}),
+                        opacity: expandedIndex === i ? 0 : 1, // Hide original if expanded
+                    },
+					onClick: (e: React.MouseEvent<HTMLDivElement>) => {
+						child.props.onClick?.(e);
 						onCardClick?.(i);
+                        setExpandedIndex(i);
 					},
 				} as CardProps & React.RefAttributes<HTMLDivElement>)
 			: child,
 	);
 
 	return (
-		<div
-			ref={container}
-			className="absolute transform translate-x-[5%] translate-y-[20%] origin-bottom-right perspective-[900px] overflow-visible max-[768px]:translate-x-[25%] max-[768px]:translate-y-[25%] max-[768px]:scale-[0.75] max-[480px]:translate-x-[25%] max-[480px]:translate-y-[25%] max-[480px]:scale-[0.55]"
-			style={{ width, height }}
-		>
-			{rendered}
-		</div>
+        <>
+            <div
+                ref={container}
+                className="absolute transform translate-x-[5%] translate-y-[20%] origin-bottom-right perspective-[900px] overflow-visible max-[768px]:translate-x-[25%] max-[768px]:translate-y-[25%] max-[768px]:scale-[0.75] max-[480px]:translate-x-[25%] max-[480px]:translate-y-[25%] max-[480px]:scale-[0.55]"
+                style={{ width, height }}
+            >
+                {rendered}
+            </div>
+            {expandedIndex !== null && createPortal(
+                <div
+                    className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 backdrop-blur-sm"
+                    onClick={() => setExpandedIndex(null)}
+                >
+                    <div
+                        className="relative w-[90vw] h-[90vh] overflow-auto" // Container for the expanded card
+                        onClick={(e) => e.stopPropagation()} // Prevent closing when clicking content
+                    >
+                         {/* Render a clone of the expanded child without transforms */}
+                        {isValidElement<CardProps>(childArr[expandedIndex]) && cloneElement(childArr[expandedIndex], {
+                            style: { width: '100%', height: '100%' }
+                        })}
+                    </div>
+                </div>,
+                document.body
+            )}
+        </>
 	);
 };
