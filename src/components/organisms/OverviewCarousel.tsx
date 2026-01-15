@@ -1,25 +1,25 @@
-import { CardSwap } from "../atoms";
-import { ContentPage } from "../molecules";
+import { PageHeader } from "../atoms";
+import { PageCarousel, PageContent } from "../molecules";
 
 export function OverviewCarousel() {
 	return (
-		<CardSwap
+		<PageCarousel
 			cardDistance={60}
 			verticalDistance={90}
 			delay={5000}
 			pauseOnHover={true}
 		>
-			<ContentPage title="Resume" expanded={false} onClose={() => {}}>
-				uno
-			</ContentPage>
+			<PageContent title="Resume" preview={<div>preview</div>}>
+				<PageHeader title="Resume" />
+			</PageContent>
 
-			<ContentPage title="Resume" expanded={false} onClose={() => {}}>
+			<PageContent title="Projects" preview={<div>preview</div>}>
 				hola 2
-			</ContentPage>
+			</PageContent>
 
-			<ContentPage title="Resume" expanded={false} onClose={() => {}}>
+			<PageContent title="Skills" preview={<div>preview</div>}>
 				hola 3
-			</ContentPage>
-		</CardSwap>
+			</PageContent>
+		</PageCarousel>
 	);
 }
