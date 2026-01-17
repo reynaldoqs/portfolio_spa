@@ -1,6 +1,7 @@
 import { CalendarSearch, Github, Linkedin, Mail } from "lucide-react";
 import { Button, TextType } from "@/components/atoms";
 import { cn } from "@/lib/utils";
+import { SkillsPreview } from "../organisms/Skills";
 
 const summary = [
 	"UX-focused full stack and mobile developer with 7+ years of experience building user-friendly products for web and mobile.",
@@ -35,10 +36,7 @@ export function HeroSection({ className }: HeroSectionProps) {
 				<span itemProp="familyName">Quispe</span>
 			</h1>
 
-			<p
-				className="text-2xl text-gray-400 font-montserrat mt-1 font-thin tracking-widest"
-				itemProp="jobTitle"
-			>
+			<p className="text-2xl text-gray-400 mt-1 font-mono" itemProp="jobTitle">
 				Software Engineer
 			</p>
 			<nav
@@ -49,7 +47,9 @@ export function HeroSection({ className }: HeroSectionProps) {
 					variant="outline"
 					size="icon"
 					aria-label="Send email to Reynaldo Quispe"
-					onClick={() => (window.location.href = "mailto:your-email@example.com")}
+					onClick={() =>
+						(window.location.href = "mailto:your-email@example.com")
+					}
 				>
 					<Mail />
 				</Button>
@@ -57,7 +57,9 @@ export function HeroSection({ className }: HeroSectionProps) {
 					variant="outline"
 					size="icon"
 					aria-label="Visit Reynaldo Quispe's LinkedIn profile"
-					onClick={() => window.open("https://linkedin.com/in/yourprofile", "_blank")}
+					onClick={() =>
+						window.open("https://linkedin.com/in/yourprofile", "_blank")
+					}
 				>
 					<Linkedin />
 				</Button>
@@ -65,7 +67,9 @@ export function HeroSection({ className }: HeroSectionProps) {
 					variant="outline"
 					size="icon"
 					aria-label="Visit Reynaldo Quispe's GitHub profile"
-					onClick={() => window.open("https://github.com/yourprofile", "_blank")}
+					onClick={() =>
+						window.open("https://github.com/yourprofile", "_blank")
+					}
 				>
 					<Github />
 				</Button>
@@ -73,11 +77,14 @@ export function HeroSection({ className }: HeroSectionProps) {
 					variant="outline"
 					size="icon"
 					aria-label="Schedule a meeting with Reynaldo Quispe"
-					onClick={() => window.open("https://calendly.com/yourprofile", "_blank")}
+					onClick={() =>
+						window.open("https://calendly.com/yourprofile", "_blank")
+					}
 				>
 					<CalendarSearch />
 				</Button>
 			</nav>
+
 			<div className="relative mt-4 min-w-lg">
 				<TextType
 					text={summary}

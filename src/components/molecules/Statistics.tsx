@@ -1,6 +1,7 @@
 import { useGSAP } from "@gsap/react";
 import { gsap } from "gsap";
 import { useRef } from "react";
+import { GlassContainer } from "../atoms";
 
 interface StatItemProps {
 	value: number;
@@ -32,10 +33,10 @@ function StatItem({ value, label1, label2 }: StatItemProps) {
 	const label = `${label1} ${label2}`.toLowerCase();
 
 	return (
-		<div className="flex flex-col">
+		<GlassContainer className="flex flex-col p-4">
 			<div
 				ref={numberRef}
-				className="text-6xl font-black text-gray-50"
+				className="text-5xl font-black text-indigo-200"
 				aria-label={`${value} ${label}`}
 				aria-valuenow={0}
 				aria-valuemin={0}
@@ -44,13 +45,11 @@ function StatItem({ value, label1, label2 }: StatItemProps) {
 			>
 				+0
 			</div>
-			<div className="text-base font-montserrat text-gray-400 uppercase tracking-wider mt-1">
+			<div className="text-sm font-mono text-gray-300 uppercase mt-2">
 				{label1}
 			</div>
-			<div className="text-base font-montserrat text-gray-400 uppercase tracking-wider">
-				{label2}
-			</div>
-		</div>
+			<div className="text-sm font-mono text-gray-300 uppercase">{label2}</div>
+		</GlassContainer>
 	);
 }
 

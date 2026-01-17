@@ -70,8 +70,8 @@ const placeNow = (el: HTMLElement, slot: Slot, skew: number) =>
 gsap.registerPlugin(Flip);
 
 export const PageCarousel: React.FC<PageCarouselProps> = ({
-	width = 500,
-	height = 400,
+	width = 400,
+	height = 300,
 	cardDistance = 60,
 	verticalDistance = 70,
 	delay = 5000,
@@ -229,7 +229,7 @@ export const PageCarousel: React.FC<PageCarouselProps> = ({
 			});
 		};
 
-		// Start Loop
+		// Start Loop∏
 		cleanupInterval();
 		intervalRef.current = window.setInterval(swap, delay);
 
@@ -476,14 +476,14 @@ export function PageContent({
 		<article
 			{...rest}
 			className={cn(
-				"absolute transform-3d will-change-transform backface-hidden",
-				"bg-gray-950 size-full rounded-xl overflow-hidden border border-gray-700/40",
+				"absolute transform-3d will-change-transform overflow-hidden backface-hidden",
+				"bg-gray-950 size-full rounded-xl border border-gray-700/40",
 				className,
 			)}
 			aria-label={title}
 			id={rest.id || `page-content-${title.toLowerCase().replace(/\s+/g, "-")}`}
 		>
-			<PageHeader title={title} />
+			<PageHeader title={title} expanded={expanded} />
 			<div aria-hidden={!expanded} className="w-full h-full">
 				{expanded ? children : preview}
 			</div>
