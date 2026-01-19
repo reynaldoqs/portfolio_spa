@@ -2,6 +2,7 @@ import { useGSAP } from "@gsap/react";
 import { gsap } from "gsap";
 import { useRef } from "react";
 import { stadistics } from "@/constants/profile";
+import { cn } from "@/lib/utils";
 import { GlassContainer } from "../atoms";
 
 interface StatItemProps {
@@ -37,7 +38,7 @@ function StatItem({ value, label1, label2 }: StatItemProps) {
 		<GlassContainer className="flex flex-col p-4">
 			<div
 				ref={numberRef}
-				className="text-5xl font-black text-indigo-200"
+				className="text-3xl md:text-5xl font-black text-indigo-200"
 				aria-label={`${value} ${label}`}
 				aria-valuenow={0}
 				aria-valuemin={0}
@@ -46,18 +47,24 @@ function StatItem({ value, label1, label2 }: StatItemProps) {
 			>
 				+0
 			</div>
-			<div className="text-sm font-mono text-gray-300 uppercase mt-2">
+			<div className="text-xs md:text-sm font-mono text-gray-300 uppercase mt-2">
 				{label1}
 			</div>
-			<div className="text-sm font-mono text-gray-300 uppercase">{label2}</div>
+			<div className="text-xs md:text-sm font-mono text-gray-300 uppercase">
+				{label2}
+			</div>
 		</GlassContainer>
 	);
 }
 
-export function Statistics() {
+interface StatisticsProps {
+	className?: string;
+}
+
+export function Statistics({ className }: StatisticsProps) {
 	return (
 		<aside
-			className="flex flex-col gap-8 -translate-y-1/2"
+			className={cn("flex flex-col", className)}
 			aria-label="Professional statistics and achievements"
 		>
 			<StatItem

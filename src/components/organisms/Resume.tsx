@@ -65,32 +65,33 @@ export function Resume() {
 
 	return (
 		<div className="w-full h-full flex flex-col ">
-			<div className="flex items-center justify-between py-6 px-6">
+			<div className="flex flex-col md:flex-row gap-2 md:gap-0 items-center py-6 px-6">
 				<h4 className="text-md text-gray-300 font-mono">
 					Reynaldo Quispe | FullStack Developer | Resume
 				</h4>
 				{numPages && (
-					<p className="text-sm text-gray-600 font-mono ml-4">
+					<p className="text-xs text-gray-600 font-mono ml-4 hidden md:block">
 						{numPages} {numPages === 1 ? "page" : "pages"}
 					</p>
 				)}
-				<Button
-					onClick={handleDownload}
-					size="sm"
-					variant="outline"
-					aria-label="Send email to Reynaldo Quispe"
-					className="text-gray-300 border-gray-300 ml-auto"
-				>
-					Download <FileDown />
-				</Button>
-				<Button
-					className="text-gray-300 border-gray-300 ml-4"
-					variant="outline"
-					onClick={handleContact}
-				>
-					Contact me
-					<Mail />
-				</Button>
+				<div className="flex gap-3 justify-center md:ml-auto ">
+					<Button
+						onClick={handleDownload}
+						variant="outline"
+						aria-label="Send email to Reynaldo Quispe"
+						className="text-gray-300 border-gray-300"
+					>
+						Download <FileDown />
+					</Button>
+					<Button
+						className="text-gray-300 border-gray-300"
+						variant="outline"
+						onClick={handleContact}
+					>
+						Contact me
+						<Mail />
+					</Button>
+				</div>
 			</div>
 			<div
 				ref={containerRef}

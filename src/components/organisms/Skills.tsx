@@ -3,7 +3,7 @@ import { Logo } from "../atoms/Logo";
 
 export function Skills() {
 	return (
-		<div className="w-full h-full overflow-auto custom-scrollbar p-12">
+		<div className="w-full h-full overflow-auto custom-scrollbar p-4 md:p-12">
 			{skills.map((category) => (
 				<div key={category.title} className="w-full max-w-3xl mx-auto p-4">
 					<div className="w-[100px] h-[3px] bg-gray-700 mt-5 mb-2 mx-auto" />

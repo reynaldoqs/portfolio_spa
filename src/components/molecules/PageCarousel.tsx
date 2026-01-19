@@ -382,6 +382,8 @@ export const PageCarousel: React.FC<PageCarouselProps> = ({
 				style: {
 					width,
 					height,
+					top: "50%",
+					left: "50%",
 					...(child.props.style ?? {}),
 					opacity: expandedIndex === i ? 0 : 1,
 					visibility: expandedIndex === i ? "hidden" : "visible",
@@ -418,7 +420,7 @@ export const PageCarousel: React.FC<PageCarouselProps> = ({
 		<>
 			<section
 				ref={container}
-				className="absolute transform translate-x-[5%] translate-y-[20%] origin-bottom-right perspective-[900px] overflow-visible max-[768px]:translate-x-[25%] max-[768px]:translate-y-[25%] max-[768px]:scale-[0.75] max-[480px]:translate-x-[25%] max-[480px]:translate-y-[25%] max-[480px]:scale-[0.55]"
+				className="relative perspective-[900px] overflow-visible"
 				style={{ width, height }}
 				aria-label="Page carousel"
 			>
@@ -436,7 +438,7 @@ export const PageCarousel: React.FC<PageCarouselProps> = ({
 						aria-labelledby={`page-title-${expandedIndex}`}
 					>
 						<div
-							className="relative w-[calc(100vw-80px)] h-[calc(100vh-80px)] overflow-hidden dark" // Container for the expanded card
+							className="relative md:w-[calc(100vw-80px)] md:h-[calc(100vh-80px)] w-[calc(100vw-20px)] h-[calc(100vh-20px)] overflow-hidden dark" // Container for the expanded card
 							onClick={(e) => e.stopPropagation()} // Prevent closing when clicking content
 						>
 							{/* Render a clone of the expanded child without transforms */}

@@ -39,7 +39,7 @@ export function HeroSection({ className }: HeroSectionProps) {
 				width={280}
 				height={280}
 			/>
-			<h1 className="text-3xl md:text-4xl text-gray-50 mt-2 font-bold text-center">
+			<h1 className="text-3xl md:text-4xl text-indigo-400 mt-2 font-bold text-center">
 				Hi, I'm {profile.name}
 			</h1>
 
@@ -94,7 +94,7 @@ export function HeroSection({ className }: HeroSectionProps) {
 					pauseDuration={2000}
 					showCursor={true}
 					cursorCharacter="|"
-					className="absolute w-full text-gray-300 font-thin font-montserrat text-center text-sm md:text-base leading-relaxed"
+					className="mx-auto px-2 text-gray-300 font-thin font-mono text-center text-sm md:text-lg leading-relaxed md:leading-loose"
 					aria-label="Professional summary"
 				/>
 			</div>

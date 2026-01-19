@@ -25,7 +25,7 @@ export function Logo({
 	return (
 		<GlassContainer
 			className={cn(
-				"py-5 px-2 w-[160px] flex flex-col items-center",
+				"py-4 md:py-5 px-2 w-[120px] md:w-[160px] flex flex-col items-center transition-all duration-300",
 				className,
 			)}
 			{...rest}
@@ -34,17 +34,19 @@ export function Logo({
 				<img
 					src={`https://cdn.simpleicons.org/${normalizedName}${contrast ? "/FFFFFF" : ""}`}
 					alt={name}
-					width={50}
+					className="w-10 h-10 md:w-[50px] md:h-[50px] object-contain"
 					onError={() => setImageError(true)}
 				/>
 			) : (
-				<div className="size-[50px] bg-gray-300 rounded-lg p-1 font-bold text-xl text-black">
+				<div className="w-10 h-10 md:w-[50px] md:h-[50px] bg-gray-300 rounded-lg p-1 flex items-center justify-center font-bold text-lg md:text-xl text-black">
 					{nameInitials}
 				</div>
 			)}
 
-			<h3 className="text-gray-300 font-mono mt-3 text-center">{name}</h3>
-			<p className="text-gray-400 text-xs text-center font-inter">
+			<h3 className="text-gray-300 font-mono mt-2 md:mt-3 text-center text-xs md:text-base leading-tight">
+				{name}
+			</h3>
+			<p className="text-gray-400 text-[10px] md:text-xs text-center font-inter mt-1">
 				{experience}+ year{experience > 1 ? "s" : ""}
 			</p>
 		</GlassContainer>
