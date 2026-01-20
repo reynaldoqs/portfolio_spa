@@ -1,8 +1,7 @@
 import { lazy, Suspense } from "react";
+import { Spinner } from "../atoms";
 import { PageCarousel, PageContent } from "../molecules";
-import { ProjectsPreview } from "./ProjectsPreview";
-import { ResumePreview } from "./ResumePreview";
-import { SkillsPreview } from "./SkillsPreview";
+import { ProjectsPreview, ResumePreview, SkillsPreview } from "./Previews";
 
 // Lazy load heavy components
 const Resume = lazy(() =>
@@ -24,19 +23,19 @@ export function OverviewCarousel() {
 			pauseOnHover={true}
 		>
 			<PageContent title="Resume" preview={<ResumePreview />}>
-				<Suspense fallback={<ResumePreview />}>
+				<Suspense fallback={<Spinner />}>
 					<Resume />
 				</Suspense>
 			</PageContent>
 
 			<PageContent title="Projects" preview={<ProjectsPreview />}>
-				<Suspense fallback={<ProjectsPreview />}>
+				<Suspense fallback={<Spinner />}>
 					<Projects />
 				</Suspense>
 			</PageContent>
 
 			<PageContent title="Skills" preview={<SkillsPreview />}>
-				<Suspense fallback={<SkillsPreview />}>
+				<Suspense fallback={<Spinner />}>
 					<Skills />
 				</Suspense>
 			</PageContent>

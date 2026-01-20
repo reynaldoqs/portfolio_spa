@@ -28,29 +28,3 @@ export function Skills() {
 		</div>
 	);
 }
-
-export function SkillsPreview() {
-	return (
-		<div className="w-full h-full p-4 flex flex-col gap-5">
-			<div className="h-4 bg-gray-600/40 rounded-full w-2/6 mx-auto" />
-			<div className="flex flex-wrap gap-3 px-10 justify-center opacity-40">
-				<div className="size-[40px] rounded-lg bg-blue-300" />
-				<div className="size-[40px] rounded-lg bg-blue-300" />
-				<div className="size-[40px] rounded-lg bg-blue-300" />
-				<div className="size-[40px] rounded-lg bg-blue-300" />
-				<div className="size-[40px] rounded-lg bg-blue-300" />
-			</div>
-			<div className="h-4 bg-gray-600/40 rounded-full w-2/5 mx-auto" />
-			<div className="flex flex-wrap gap-3 px-12 justify-center opacity-40">
-				<div className="size-[40px] rounded-lg bg-purple-400" />
-				<div className="size-[40px] rounded-lg bg-purple-400" />
-				<div className="size-[40px] rounded-lg bg-purple-400" />
-				<div className="size-[40px] rounded-lg bg-purple-400" />
-				<div className="size-[40px] rounded-lg bg-purple-400" />
-				<div className="size-[40px] rounded-lg bg-purple-400" />
-				<div className="size-[40px] rounded-lg bg-purple-400" />
-				<div className="size-[40px] rounded-lg bg-purple-400" />
-			</div>
-		</div>
-	);
-}
