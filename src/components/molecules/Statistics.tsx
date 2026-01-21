@@ -20,8 +20,9 @@ function StatItem({ value, label1, label2 }: StatItemProps) {
 
 		const obj = { count: 0 };
 		gsap.to(obj, {
+			delay: 2,
 			count: value,
-			duration: 2,
+			duration: 3,
 			ease: "power2.out",
 			onUpdate: () => {
 				if (element) {

@@ -27,7 +27,7 @@ export function HeroSection({ className }: HeroSectionProps) {
 	return (
 		<header
 			className={cn(
-				"flex flex-col h-full justify-center items-center font-inter",
+				"flex flex-col w-fit justify-center items-center font-inter",
 				className,
 			)}
 		>

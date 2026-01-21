@@ -14,7 +14,6 @@ export function Projects() {
 						description={project.description}
 						technologies={project.technologies}
 						link={project.link}
-						githubLink={project.githubLink}
 					/>
 				))}
 			</div>

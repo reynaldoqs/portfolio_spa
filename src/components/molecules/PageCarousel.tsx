@@ -70,6 +70,10 @@ const placeNow = (el: HTMLElement, slot: Slot, skew: number) =>
 
 gsap.registerPlugin(Flip);
 
+const PORTAL_ANIMATION_DURATION = 0.3;
+const PORTAL_ANIMATION_EASE = "power3.inOut";
+const PORTAL_Z_INDEX = 999;
+
 export const PageCarousel: React.FC<PageCarouselProps> = ({
 	width = 400,
 	height = 300,
@@ -327,20 +331,20 @@ export const PageCarousel: React.FC<PageCarouselProps> = ({
 		if (expandedIndex !== null) {
 			Flip.from(flipState.current, {
 				targets: ".page-content-expanded",
-				duration: 0.4, // Faster
-				ease: "power3.inOut",
+				duration: PORTAL_ANIMATION_DURATION,
+				ease: PORTAL_ANIMATION_EASE,
 				absolute: true,
-				zIndex: 50,
+				zIndex: PORTAL_Z_INDEX,
 			});
 		}
 		// Closing
 		else {
 			Flip.from(flipState.current, {
 				targets: refs.map((r) => r.current), // Target all cards, Flip will match IDs
-				duration: 0.4, // Faster
-				ease: "power3.inOut",
+				duration: PORTAL_ANIMATION_DURATION,
+				ease: PORTAL_ANIMATION_EASE,
 				absolute: true, // Important for the transition
-				zIndex: 50,
+				zIndex: PORTAL_Z_INDEX,
 				onComplete: () => {
 					flipState.current = null;
 
@@ -429,7 +433,7 @@ export const PageCarousel: React.FC<PageCarouselProps> = ({
 			{expandedIndex !== null &&
 				createPortal(
 					<div
-						className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 backdrop-blur-sm"
+						className="fixed inset-0 z-999 flex items-center justify-center bg-black/60 backdrop-blur-sm"
 						onClick={() => {
 							handleClose();
 						}}
@@ -488,7 +492,7 @@ export function PageContent({
 			{...rest}
 			className={cn(
 				"absolute transform-3d will-change-transform overflow-hidden backface-hidden",
-				"bg-gray-950 size-full rounded-xl border border-gray-700/40",
+				"bg-gray-950 size-full rounded-xl border border-gray-700/40 z-999",
 				className,
 			)}
 			aria-label={title}
