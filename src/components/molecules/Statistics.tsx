@@ -14,24 +14,25 @@ interface StatItemProps {
 function StatItem({ value, label1, label2 }: StatItemProps) {
 	const numberRef = useRef<HTMLDivElement>(null);
 
-	useGSAP(() => {
-		const element = numberRef.current;
-		if (!element) return;
+	useGSAP(
+		() => {
+			const element = numberRef.current;
+			if (!element) return;
 
-		const obj = { count: 0 };
-		gsap.to(obj, {
-			delay: 2,
-			count: value,
-			duration: 3,
-			ease: "power2.out",
-			onUpdate: () => {
-				if (element) {
+			const obj = { count: 0 };
+			gsap.to(obj, {
+				delay: 2,
+				count: value,
+				duration: 3,
+				ease: "power2.out",
+				onUpdate: () => {
 					element.textContent = `+${Math.round(obj.count)}`;
 					element.setAttribute("aria-valuenow", String(Math.round(obj.count)));
-				}
-			},
-		});
-	}, [value]);
+				},
+			});
+		},
+		{ dependencies: [value], scope: numberRef },
+	);
 
 	const label = `${label1} ${label2}`.toLowerCase();
 

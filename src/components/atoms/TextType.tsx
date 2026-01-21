@@ -1,4 +1,4 @@
-/** biome-ignore-all lint/correctness/useExhaustiveDependencies: library */
+import { useGSAP } from "@gsap/react";
 import { gsap } from "gsap";
 import {
 	createElement,
@@ -94,18 +94,21 @@ export const TextType = ({
 		return () => observer.disconnect();
 	}, [startOnVisible]);
 
-	useEffect(() => {
-		if (showCursor && cursorRef.current) {
-			gsap.set(cursorRef.current, { opacity: 1 });
-			gsap.to(cursorRef.current, {
-				opacity: 0,
-				duration: cursorBlinkDuration,
-				repeat: -1,
-				yoyo: true,
-				ease: "power2.inOut",
-			});
-		}
-	}, [showCursor, cursorBlinkDuration]);
+	useGSAP(
+		() => {
+			if (showCursor && cursorRef.current) {
+				gsap.set(cursorRef.current, { opacity: 1 });
+				gsap.to(cursorRef.current, {
+					opacity: 0,
+					duration: cursorBlinkDuration,
+					repeat: -1,
+					yoyo: true,
+					ease: "power2.inOut",
+				});
+			}
+		},
+		{ dependencies: [showCursor, cursorBlinkDuration], scope: cursorRef },
+	);
 
 	useEffect(() => {
 		if (!isVisible) return;
@@ -179,6 +182,7 @@ export const TextType = ({
 		reverseMode,
 		variableSpeed,
 		onSentenceComplete,
+		getRandomSpeed,
 	]);
 
 	const shouldHideCursor =

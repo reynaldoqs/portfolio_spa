@@ -1,6 +1,7 @@
 /** biome-ignore-all lint/a11y/noStaticElementInteractions: library */
 /** biome-ignore-all lint/a11y/noNoninteractiveTabindex: library */
 /** biome-ignore-all lint/a11y/useKeyWithClickEvents: library*/
+import { useGSAP } from "@gsap/react";
 import { gsap } from "gsap";
 import type React from "react";
 import { type CSSProperties, useEffect, useRef, useState } from "react";
@@ -64,7 +65,9 @@ export const PixelTransition: React.FC<PixelTransitionProps> = ({
 		}
 	}, [gridSize, pixelColor]);
 
-	const animatePixels = (activate: boolean): void => {
+	const { contextSafe } = useGSAP({ scope: containerRef });
+
+	const animatePixels = contextSafe((activate: boolean): void => {
 		setIsActive(activate);
 
 		const pixelGridEl = pixelGridRef.current;
@@ -109,7 +112,7 @@ export const PixelTransition: React.FC<PixelTransitionProps> = ({
 				from: "random",
 			},
 		});
-	};
+	});
 
 	const handleEnter = (): void => {
 		if (!isActive) animatePixels(true);
