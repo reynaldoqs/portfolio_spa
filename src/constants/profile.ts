@@ -1,4 +1,8 @@
-import builtout from "@/assets/images/buildout.png";
+import camex from "@/assets/images/camexbolivia.com.bo_.png";
+import cci from "@/assets/images/dev.cci-non-prod.link_.png";
+import portfolio from "@/assets/images/portfolio.png";
+import builtout from "@/assets/images/www.buildout.com_.png";
+import vecinos from "@/assets/images/www.vecinos.com_.png";
 
 export const stadistics = {
 	projects: 23,
@@ -103,10 +107,21 @@ export const skills = [
 
 export const projects = [
 	{
+		title: "Portfolio",
+		rol: "FullStack Developer",
+		category: "Web App",
+		image: portfolio,
+		description:
+			"This is my portfolio website, where I showcase my work and skills as a software engineer.",
+		technologies: ["React", "TypeScript", "GSAP", "Tailwind CSS"],
+		link: "https://reynaldoqs.github.io/portfolio_spa",
+		github: "https://github.com/reynaldoqs/portfolio_spa",
+	},
+	{
 		title: "CCI Web Dashboard",
 		rol: "FrontEnd Developer",
 		category: "Web App",
-		image: "",
+		image: cci,
 		description:
 			"CCI is a financial investing platform from CCI Puesto de Bolsa, S.A. that lets users open and manage investment accounts, monitor their portfolio performance in real time, view transaction history, and track the value and composition of their financial assets through a secure mobile and digital interface.",
 		technologies: [
@@ -187,7 +202,7 @@ export const projects = [
 		title: "Vecinos Landing Page",
 		rol: "FrontEnd Developer",
 		category: "Web App",
-		image: builtout,
+		image: vecinos,
 		description:
 			"Vecinos is a platform that connects neighbors with each other and with local businesses.",
 		technologies: ["React", "TypeScript", "Styled Components", "Vite"],
@@ -215,7 +230,7 @@ export const projects = [
 		title: "Camex Bolivia",
 		rol: "Intern",
 		category: "Web App",
-		image: builtout,
+		image: camex,
 		description:
 			"Camex Bolivia is a logistics company that is dedicated to driving the growth and expansion of businesses internationally for goods and materials.",
 		technologies: ["Wordpress", "HTML", "CSS", "JavaScript"],
