@@ -1,4 +1,5 @@
 import { CalendarSearch, Github, Linkedin, Mail, Terminal } from "lucide-react";
+import me from "@/assets/images/me.JPG";
 import { Button, TextType } from "@/components/atoms";
 import { profile } from "@/constants/profile";
 import { cn } from "@/lib/utils";
@@ -32,7 +33,7 @@ export function HeroSection({ className }: HeroSectionProps) {
 			)}
 		>
 			<img
-				src="https://res.cloudinary.com/dtunq8gr3/image/upload/t_aayushfinal/aayush1_tgrcxs"
+				src={me}
 				alt={`${profile.name} - Software Engineer and Full Stack Developer`}
 				className="w-48 h-48 md:w-[280px] md:h-[280px] rounded-full object-cover shadow-xl mb-4"
 				loading="eager"

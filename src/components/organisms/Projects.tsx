@@ -8,12 +8,14 @@ export function Projects() {
 				{projects.map((project) => (
 					<ProjectCard
 						key={project.title}
+						category={project.category}
 						title={project.title}
 						rol={project.rol}
 						image={project.image}
 						description={project.description}
 						technologies={project.technologies}
 						link={project.link}
+						github={project.github}
 					/>
 				))}
 			</div>

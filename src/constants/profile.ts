@@ -1,6 +1,10 @@
 import camex from "@/assets/images/camexbolivia.com.bo_.png";
+import cciapp from "@/assets/images/cci_mobile_app.webp";
 import cci from "@/assets/images/dev.cci-non-prod.link_.png";
+import pawfinder from "@/assets/images/paw-finder-gold.vercel.app_.png";
 import portfolio from "@/assets/images/portfolio.png";
+import sywapp from "@/assets/images/shopyourway_mobile_app.webp";
+import vecinosapp from "@/assets/images/vecinos_mobile_app.webp";
 import builtout from "@/assets/images/www.buildout.com_.png";
 import vecinos from "@/assets/images/www.vecinos.com_.png";
 
@@ -118,6 +122,26 @@ export const projects = [
 		github: "https://github.com/reynaldoqs/portfolio_spa",
 	},
 	{
+		title: "Paw finder",
+		rol: "FullStack DEveloper",
+		image: pawfinder,
+		description:
+			"PawFinder is a web application designed to help reunite lost pets with their owners. The platform uses image embeddings to analyze and compare pet photos, enabling accurate matching between lost and found pets based on visual similarity. Built with a modern web stack, PawFinder allows users to upload pet images, search for potential matches, and quickly identify similar pets using AI-powered image similarity.",
+		technologies: [
+			"React",
+			"NextJS",
+			"SchadCN",
+			"Supabase",
+			"ChatGPT SDK",
+			"Embedings",
+			"TailwindCSS",
+			"Zod",
+			"RHF",
+		],
+		link: "https://paw-finder-gold.vercel.app/",
+		github: "https://github.com/reynaldoqs/paw-finder",
+	},
+	{
 		title: "CCI Web Dashboard",
 		rol: "FrontEnd Developer",
 		category: "Web App",
@@ -149,7 +173,7 @@ export const projects = [
 		title: "CCI mobile App",
 		rol: "Mobile Developer",
 		category: "Mobile App",
-		image: "",
+		image: cciapp,
 		description:
 			"CCI is a financial investing platform from CCI Puesto de Bolsa, S.A. that lets users open and manage investment accounts, monitor their portfolio performance in real time, view transaction history, and track the value and composition of their financial assets through a secure mobile and digital interface.",
 		technologies: [
@@ -168,7 +192,7 @@ export const projects = [
 		title: "Shop Your Way",
 		rol: "Mobile Developer",
 		category: "Mobile App",
-		image: builtout,
+		image: sywapp,
 		description:
 			"Shop Your Way is an online shopping and rewards platform where members earn points on purchases, redeem them for discounts and products, and access personalized deals and partner offers across a wide network of retailers.",
 		technologies: [
@@ -184,7 +208,7 @@ export const projects = [
 		title: "Vecinos App",
 		rol: "Mobile Developer",
 		category: "Mobile App",
-		image: builtout,
+		image: vecinosapp,
 		description:
 			"Vecinos is a platform that connects neighbors with each other and with local businesses.",
 		technologies: [

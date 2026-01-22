@@ -1,31 +1,37 @@
 import { Github, Globe, Layers } from "lucide-react";
+import { cn } from "@/lib/utils";
 import { Badge, GlassContainer } from "../atoms";
 
 interface ProjectCardProps {
+	category?: string;
 	title: string;
 	image: string;
 	rol: string;
 	description: string;
 	technologies: string[];
 	link: string;
-	githubLink?: string;
+	github?: string;
 }
 
 export function ProjectCard({
+	category = "Web App",
 	title,
 	image,
 	rol,
 	description,
 	technologies,
 	link,
-	githubLink,
+	github,
 }: ProjectCardProps) {
 	return (
 		<GlassContainer className="group flex flex-col gap-4 p-5 h-full">
 			<div className="relative overflow-hidden rounded-xl bg-gray-900/50">
 				<img
 					src={image}
-					className="w-full aspect-video object-cover"
+					className={cn(
+						"w-full aspect-video",
+						category === "Web App" ? "object-cover" : "object-contain",
+					)}
 					alt={title}
 				/>
 			</div>
@@ -36,9 +42,9 @@ export function ProjectCard({
 						<h2 className="text-xl font-bold tracking-tight text-white">
 							{title}
 						</h2>
-						{githubLink && (
+						{github && (
 							<a
-								href={githubLink}
+								href={github}
 								target="_blank"
 								rel="noopener noreferrer"
 								className="text-gray-400 hover:text-white transition-colors"
